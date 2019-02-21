@@ -16,21 +16,14 @@ app.use(cors());
 app.use(helmet());
 
 // validate API token from ENV and auth header
-app.use(function validateBearerToken(req, res, next) {
 
-  const apiToken = process.env.API_TOKEN;
-  const authToken = req.get('Authorization');
-
-  if (!authToken || authToken.split(' ')[1] !== apiToken) {
-    return res.status(401).json({ error: 'Unauthorized request' });
-  }
-
-  // move to the next middleware
-  next();
-});
 
 // build handler functions here
 
+//users must be able to search for movies by GENRE, COUNTRY, or AVG_VOTE
+//endpoint is GET /movie
+// search for name, genre, country are all standard query string parameters, should be case INsensitive
+// search for average vote must return all movies greater than or equal to the inputted number
 
 // build gets here
 
@@ -38,8 +31,6 @@ app.use(function validateBearerToken(req, res, next) {
 
 //listening below
 
-const PORT = 8000;
-
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
+app.listen(8000, () => {
+  console.log('Server listening at http://localhost:8000');
 });
